@@ -25,4 +25,6 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
     @Column(nullable = false, length = 15)
     private String status;
+    @Column(length = 200)
+    private String observacao;
 }
