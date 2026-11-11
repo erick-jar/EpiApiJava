@@ -23,8 +23,11 @@ public class Treinamento {
     @Column(length = 500)
     private String descricao;
 
-    // Caminho do material, igual ao imagemUrl do EPI:
-    // /arquivos/nr06.pdf
     @Column(length = 200)
     private String arquivoUrl;
+
+    // ATRIBUTO ADICIONADO PARA O DESAFIO EXTRA
+    // Pode ser nulo se o treinamento nunca expirar
+    @Column(name = "validade_meses")
+    private Integer validadeMeses;
 }

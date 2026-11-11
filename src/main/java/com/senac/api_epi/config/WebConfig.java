@@ -1,11 +1,13 @@
 package com.senac.api_epi.config;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    // Permite que aplicações externas consumam a API
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -14,13 +16,14 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
-    // Disponibiliza imagens da pasta static/imagens
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/imagens/**")
                 .addResourceLocations("classpath:/static/imagens/");
 
+        // Libera tanto os novos uploads quanto os arquivos antigos em static/arquivos/
         registry.addResourceHandler("/arquivos/**")
-                .addResourceLocations("classpath:static/arquivos");
+                .addResourceLocations("file:uploads/treinamentos/", "classpath:/static/arquivos/");
     }
 }
